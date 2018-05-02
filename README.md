@@ -22,11 +22,17 @@ Or install it yourself as:
 
 Create a `initializers/commission_hub.rb` with your affiliates configuration files
 
+Instructions to create your api token can be found in http://wiki.awin.com/index.php/API_authentication
+
+To get your publisher id visit https://ui.awin.com/login and log yourself in. In the top right corner of the screen there will be the name of the account and beside it the publisher id in parenthesis.
+
 ```ruby
 CommissionHub.setup do |config|
 
-  config.setup :commission_junction_v20120402 do |c|
-   c.api_key = 'your_api_key'
+  config.setup :awin do |c|
+    c.base_uri     = 'https://api.awin.com'
+    c.api_token    = 'your_api_token'
+    c.publisher_id = 'your_publisher_id'
   end
 
 end
