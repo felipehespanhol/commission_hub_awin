@@ -52,5 +52,26 @@ describe CommissionHub do
           to have_been_made
       end
     end
+
+    describe '#advertiser_details' do
+      let(:advertisers_url) { "#{base_uri}/publishers/#{publisher_id}/programmedetails" }
+
+      before do
+        stub_request(:get, advertisers_url).
+          with(
+            headers: { "Authorization" => "Bearer #{api_token}" },
+            query: { "advertiserId" => "4275" }
+        ).
+          to_return(status: 200, body: "", headers: {})
+      end
+
+      it 'calls for GET /publishers/:id/programmedetails' do
+        connection.advertiser_details(nil, request_params: { query: { "advertiserId" => "4275" }})
+        expect(
+          a_request(:get, "https://api.awin.com/publishers/10/programmedetails").
+          with(query: { "advertiserId" => "4275" })
+        ).to have_been_made
+      end
+    end
   end
 end

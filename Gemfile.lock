@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    commission_hub_awin (0.0.1)
+    commission_hub_awin (0.0.2)
       commission_hub
 
 GEM
