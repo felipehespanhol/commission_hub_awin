@@ -4,6 +4,7 @@ module CommissionHub
 
       def_endpoint :advertisers, "programmes", class: :Base
       def_endpoint :advertiser_details, "programmedetails", class: :Base
+      def_endpoint :commissions, "transactions", class: :Base
 
       def initialize(settings)
         @settings = settings

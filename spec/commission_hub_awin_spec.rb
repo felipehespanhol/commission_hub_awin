@@ -73,5 +73,40 @@ describe CommissionHub do
         ).to have_been_made
       end
     end
+
+    describe '#commissions' do
+      let(:commissions_url) { "#{base_uri}/publishers/#{publisher_id}/transactions" }
+      # transactions/?startDate=2017-02-20T00%3A00%3A00&endDate=2017-02-21T01%3A59%3A59&timezone=UTC
+
+      before do
+        stub_request(:get, commissions_url).
+          with(
+            headers: { "Authorization" => "Bearer #{api_token}" },
+            query: {
+              "startDate" => "2017-02-20",
+              "endDate"   => "2017-02-21",
+              "timezone"  => "UTC"
+            }
+          ).to_return(status: 200, body: "", headers: {})
+      end
+
+      it 'calls for GET /publishers/:id/transactions' do
+        connection.commissions(nil, request_params: {
+          query: {
+            "startDate" => "2017-02-20",
+            "endDate"   => "2017-02-21",
+            "timezone"  => "UTC"
+          }
+        })
+        expect(
+          a_request(:get, "https://api.awin.com/publishers/10/transactions").
+          with(query: {
+            "startDate" => "2017-02-20",
+            "endDate"   => "2017-02-21",
+            "timezone"  => "UTC"
+          })
+        ).to have_been_made
+      end
+    end
   end
 end
