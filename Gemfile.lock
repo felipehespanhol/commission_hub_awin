@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/lemmoney/commission_hub.git
-  revision: 056fd88f3ae146221ac274abe8e27ace809d0d10
+  revision: 316830eac01667dac90406537a3d5039e0339b94
   specs:
     commission_hub (0.1.0)
       activesupport
